@@ -5,11 +5,10 @@ import { useDrag } from "react-dnd";
 
 export default function MessageNode() {
   const ref = useRef(null);
-  const [{ opacity }, drag] = useDrag({
+  const [, drag] = useDrag({
     type: "message-node",
     item: {},
     collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0.5 : 1,
       isDragging: monitor.isDragging(),
     }),
   });
@@ -18,8 +17,7 @@ export default function MessageNode() {
   return (
     <div
       ref={ref}
-      className="border-gray-400 rounded-md items-center flex flex-col border m-4 p-4"
-      style={{ opacity }}
+      className="border-gray-400 rounded-md items-center flex flex-col border m-4 p-4 hover:bg-gray-50 cursor-pointer"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
