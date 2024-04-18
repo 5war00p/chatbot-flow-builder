@@ -25,7 +25,7 @@ export default function Sidebar() {
       <div className="mt-auto p-4">
         <button
           type="button"
-          className="w-full rounded-md bg-orange-100 px-2.5 py-1.5 text-sm font-medium text-orange-600 shadow-sm hover:bg-orange-200"
+          className="w-full rounded-md bg-orange-50 px-2.5 py-1.5 text-sm font-medium text-orange-600 shadow-sm hover:bg-orange-100"
           onClick={() => toast("Saving..")}
         >
           Save Changes
