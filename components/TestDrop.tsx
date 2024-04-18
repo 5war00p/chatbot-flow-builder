@@ -12,5 +12,5 @@ export default function TestDrop() {
   });
   drop(ref);
 
-  return <div className="w-[500px] h-[500px] border-rose-600">Here</div>;
+  return <div className="h-[calc(100vh-178px)] border-rose-600">Here</div>;
 }

@@ -1,16 +1,11 @@
-import TestDrag from "@/components/TestDrag";
-import TestDrop from "@/components/TestDrop";
+import Sidebar from "@/components/Sidebar";
 import TestReactFlow from "@/components/TestReactFlow";
 
 export default function Home() {
   return (
     <div className="flex">
       <TestReactFlow />
-
-      <div className="max-w-sm">
-        <TestDrag />
-        <TestDrop />
-      </div>
+      <Sidebar />
     </div>
   );
 }
