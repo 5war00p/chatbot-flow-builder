@@ -1,3 +1,11 @@
-  export default function Home() {
-  return <p>Hello World!</p>;
+import TestDrag from "@/components/TestDrag";
+import TestDrop from "@/components/TestDrop";
+
+export default function Home() {
+  return (
+    <>
+      <TestDrag />
+      <TestDrop />
+    </>
+  );
 }
