@@ -37,6 +37,12 @@ export default function App() {
         onConnect={onConnect}
         fitView
       >
+        {/* Hiding React flow attribution to make it looks like official pro version */}
+        <style>
+          {`.react-flow__attribution {
+                visibility: hidden;
+            }`}
+        </style>
         <Background />
         <Controls position="bottom-right" />
         <MiniMap position="top-right" />
