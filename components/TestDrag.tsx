@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useDrag } from "react-dnd";
+import toast from "react-hot-toast";
 
 export default function TestDrag() {
   const text = "testing";
@@ -18,6 +19,8 @@ export default function TestDrag() {
   });
   drag(ref);
 
+  const notify = () => toast("Here is your toast.");
+
   return (
     <div
       ref={ref}
@@ -25,6 +28,7 @@ export default function TestDrag() {
       style={{ opacity }}
     >
       {text}
+      <button onClick={notify}>Make me a toast</button>
     </div>
   );
 }
