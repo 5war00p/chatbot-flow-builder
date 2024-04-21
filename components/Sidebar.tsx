@@ -10,7 +10,7 @@ export default function Sidebar() {
       <div className="border-b p-4">
         <h3 className="font-medium">Components</h3>
         <p className="text-gray-400 text-xs">
-          Nodes that can be dragged to create a flow
+          Drag n Drop into left side to create a flow
         </p>
       </div>
 
@@ -23,7 +23,7 @@ export default function Sidebar() {
       <div className="mt-auto p-4">
         <button
           type="button"
-          className="w-full rounded-md bg-orange-50 px-2.5 py-1.5 text-sm font-medium text-orange-600 shadow-sm hover:bg-orange-100"
+          className="w-full rounded-md bg-green-50 px-2.5 py-1.5 text-sm font-medium text-green-600 shadow-sm hover:bg-green-100"
           onClick={() => toast("Saving..")}
         >
           Save Changes

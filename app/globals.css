@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.react-flow__node {
+    background-color: theme("colors.green.50");
+    border: 0.5px solid theme("borderColor.green.500");
+    box-shadow: theme("boxShadow.md");
+    color: theme("colors.green.700");
+    font-weight: theme("fontWeight.medium");
+    background-image: url("whatsapp.svg");
+    background-repeat: no-repeat;
+    background-position: 10%;
+}
+
+.react-flow__node.selectable.selected {
+    box-shadow: none;
+    box-shadow: theme("boxShadow.md");
+    border: 1px solid theme("borderColor.green.600");
+}

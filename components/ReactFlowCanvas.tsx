@@ -11,20 +11,11 @@ import ReactFlow, {
   Connection,
   ReactFlowInstance,
   MarkerType,
+  Position,
 } from "reactflow";
-import "reactflow/dist/style.css";
-
-const initialNodes = [
-  {
-    id: randomBytes(20).toString("hex"),
-    type: "default",
-    data: { label: "message node" },
-    position: { x: 0, y: 0 },
-  },
-];
 
 export default function ReactFlowCanvas() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
@@ -59,7 +50,9 @@ export default function ReactFlowCanvas() {
         id: randomBytes(20).toString("hex"),
         type,
         position,
-        data: { label: "message node" },
+        data: { label: "Send message" },
+        sourcePosition: Position.Left,
+        targetPosition: Position.Right,
       };
 
       setNodes((nodes) => nodes.concat(newNode));
