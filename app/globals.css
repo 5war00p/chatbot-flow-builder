@@ -15,7 +15,6 @@
 }
 
 .react-flow__node.selectable.selected {
-    box-shadow: none;
     box-shadow: theme("boxShadow.md");
     border: 1px solid theme("borderColor.green.600");
 }
@@ -24,6 +23,6 @@
     background-color: theme("borderColor.green.500");
 }
 
-.react-flow__node-default.selectable:focus-visible {
+.react-flow__node.selectable:focus {
     box-shadow: theme("boxShadow.md");
 }
