@@ -24,10 +24,6 @@
     background-color: theme("borderColor.green.500");
 }
 
-.react-flow__edge-path {
-    stroke: theme("borderColor.zinc.300");
-}
-
-.react-flow__edge.selected > :nth-child(1) {
-    stroke: theme("borderColor.zinc.400");
+.react-flow__node-default.selectable:focus-visible {
+    box-shadow: theme("boxShadow.md");
 }

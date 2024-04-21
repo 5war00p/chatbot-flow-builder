@@ -10,4 +10,5 @@ export interface FlowStateType {
     nodes: Node<any, string | undefined>[];
   };
   isChanged: boolean;
+  isErrored: boolean;
 }
