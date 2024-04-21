@@ -19,3 +19,15 @@
     box-shadow: theme("boxShadow.md");
     border: 1px solid theme("borderColor.green.600");
 }
+
+.react-flow__handle {
+    background-color: theme("borderColor.green.500");
+}
+
+.react-flow__edge-path {
+    stroke: theme("borderColor.zinc.300");
+}
+
+.react-flow__edge.selected > :nth-child(1) {
+    stroke: theme("borderColor.zinc.400");
+}
