@@ -108,6 +108,8 @@ export default function ReactFlowCanvas() {
         defaultEdgeOptions={{
           markerEnd: {
             type: MarkerType.ArrowClosed,
+            // Tailwind Zinc 300
+            color: "#d4d4d8",
           },
         }}
         onNodesChange={onNodesChange}
