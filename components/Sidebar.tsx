@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 export default function Sidebar() {
   return (
-    <div className="border-l w-1/4 h-screen overflow-hidden">
+    <aside className="border-l w-1/4 h-screen overflow-hidden">
       {/* Header */}
       <div className="border-b p-4">
         <h3 className="font-medium">Components</h3>
@@ -19,8 +19,6 @@ export default function Sidebar() {
         <MessageNode />
       </div>
 
-      {/* <TestDrop /> */}
-
       {/* Footer */}
       <div className="mt-auto p-4">
         <button
@@ -31,6 +29,6 @@ export default function Sidebar() {
           Save Changes
         </button>
       </div>
-    </div>
+    </aside>
   );
 }

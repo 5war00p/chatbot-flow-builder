@@ -1,10 +1,10 @@
 import Sidebar from "@/components/Sidebar";
-import TestReactFlow from "@/components/TestReactFlow";
+import ReactFlowCanvas from "@/components/ReactFlowCanvas";
 
 export default function Home() {
   return (
     <div className="flex">
-      <TestReactFlow />
+      <ReactFlowCanvas />
       <Sidebar />
     </div>
   );

@@ -1,23 +1,17 @@
 "use client";
 
-import { useRef } from "react";
-import { useDrag } from "react-dnd";
+import { DragEventHandler } from "react";
 
 export default function MessageNode() {
-  const ref = useRef(null);
-  const [, drag] = useDrag({
-    type: "message-node",
-    item: {},
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
-  drag(ref);
+  const onDragStart: DragEventHandler<HTMLDivElement> = (event) => {
+    event.dataTransfer.setData("application/reactflow", "default");
+  };
 
   return (
     <div
-      ref={ref}
       className="border-gray-400 rounded-md items-center flex flex-col border m-4 p-4 hover:bg-gray-50 cursor-pointer"
+      onDragStart={onDragStart}
+      draggable
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
