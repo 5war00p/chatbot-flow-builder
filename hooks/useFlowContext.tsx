@@ -12,7 +12,6 @@ const defaultSessionState = {
     nodes: [],
   },
   isChanged: false,
-  isErrored: false,
 };
 
 export const useFlowContext = () => {
