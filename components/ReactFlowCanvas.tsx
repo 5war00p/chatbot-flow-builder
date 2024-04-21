@@ -1,6 +1,12 @@
 "use client";
+import { useFlowContext } from "@/hooks/useFlowContext";
 import { randomBytes } from "crypto";
-import React, { useState, useCallback, DragEventHandler } from "react";
+import React, {
+  useState,
+  useCallback,
+  DragEventHandler,
+  useEffect,
+} from "react";
 import ReactFlow, {
   addEdge,
   useNodesState,
@@ -15,14 +21,48 @@ import ReactFlow, {
 } from "reactflow";
 
 export default function ReactFlowCanvas() {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { sessionState, setSessionState } = useFlowContext();
+  const [nodes, setNodes, onNodesChange] = useNodesState(
+    sessionState.tempState.nodes
+  );
+  const [edges, setEdges, onEdgesChange] = useEdgesState(
+    sessionState.tempState.edges
+  );
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
 
+  useEffect(() => {
+    if (nodes.length !== 0)
+      setSessionState((prev) => ({
+        ...prev,
+        tempState: {
+          ...prev.tempState,
+          nodes,
+        },
+        isChanged: true,
+      }));
+
+    if (edges.length !== 0)
+      setSessionState((prev) => ({
+        ...prev,
+        tempState: {
+          ...prev.tempState,
+          edges,
+        },
+        isChanged: true,
+      }));
+
+    if (edges.length === 0 && nodes.length === 0) {
+      setSessionState((prev) => ({
+        ...prev,
+        isChanged: false,
+      }));
+    }
+  }, [edges, nodes, setSessionState]);
+
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
-    []
+    [setEdges]
   );
 
   const onDragOver: DragEventHandler<HTMLDivElement> = useCallback((event) => {
@@ -57,14 +97,14 @@ export default function ReactFlowCanvas() {
 
       setNodes((nodes) => nodes.concat(newNode));
     },
-    [reactFlowInstance]
+    [reactFlowInstance, setNodes]
   );
 
   return (
     <div className="h-screen w-11/12">
       <ReactFlow
-        nodes={nodes}
-        edges={edges}
+        nodes={sessionState.tempState.nodes}
+        edges={sessionState.tempState.edges}
         defaultEdgeOptions={{
           markerEnd: {
             type: MarkerType.ArrowClosed,
