@@ -9,9 +9,10 @@ export default function ActionBar() {
   const [disableSave, setDisableSave] = useState(sessionState.isChanged);
 
   useEffect(() => {
+    // We have to check whether it is client side or server other next.js throws error
     // Disable save button based on react flow change and unchanged state
-    setDisableSave(sessionState.isChanged);
-  }, [sessionState.isChanged]);
+    setDisableSave(typeof window !== "undefined" && sessionState.isChanged);
+  }, [sessionState]);
 
   const onSave = useCallback(() => {
     if (checkForReachability(sessionState.tempState)) {
@@ -39,9 +40,8 @@ export default function ActionBar() {
         Reset
       </button>
       <button
-        type="button"
         disabled={!disableSave}
-        className="disabled:opacity-50 disabled:cursor-not-allowed w-full rounded-md bg-green-500 px-2.5 py-1.5 text-sm font-medium text-white shadow-sm hover:opacity-80"
+        className="disabled:opacity-50 disabled:cursor-not-allowed opacity-100 cursor-pointer w-full rounded-md bg-green-500 px-2.5 py-1.5 text-sm font-medium text-white shadow-sm hover:opacity-80"
         onClick={onSave}
       >
         Save Changes
