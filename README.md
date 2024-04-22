@@ -22,5 +22,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deployment and Demo Links
 
-- [Vercel Deployment URL]()
-- [Loom Video]()
+- [Vercel Deployment URL](https://chatbot-flow-builder-13js.vercel.app/)
+- [Loom Video](https://www.loom.com/share/0e0d9a20896e4f5ab81018757f71f7b3?sid=6aab6b10-f1f6-4301-b6a3-3fbc71a40570)
