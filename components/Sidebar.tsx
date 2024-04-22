@@ -1,4 +1,4 @@
-import MessageNode from "@/components/MessageNode";
+import MessageNode from "@/components/node-components/MessageNode";
 import ActionBar from "./ActionBar";
 
 export default function Sidebar() {

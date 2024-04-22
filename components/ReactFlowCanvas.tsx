@@ -6,6 +6,7 @@ import React, {
   useCallback,
   DragEventHandler,
   useEffect,
+  useMemo,
 } from "react";
 import ReactFlow, {
   addEdge,
@@ -18,7 +19,9 @@ import ReactFlow, {
   ReactFlowInstance,
   MarkerType,
   Position,
+  Node as ReactFlowNode,
 } from "reactflow";
+import SendMessage from "./custom-nodes/SendMessage";
 
 export default function ReactFlowCanvas() {
   const { sessionState, setSessionState } = useFlowContext();
@@ -30,6 +33,8 @@ export default function ReactFlowCanvas() {
   );
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
+
+  const nodeTypes = useMemo(() => ({ sendMessage: SendMessage }), []);
 
   //  When user changes any node or edge in flow we update tempState in sessionState
   useEffect(() => {
@@ -102,13 +107,14 @@ export default function ReactFlowCanvas() {
         y: event.clientY,
       });
 
-      const newNode = {
+      const newNode: ReactFlowNode = {
         id: randomBytes(20).toString("hex"),
         type,
         position,
         data: { label: "Send message" },
         sourcePosition: Position.Left,
         targetPosition: Position.Right,
+        className: "sendMessage",
       };
 
       setNodes((nodes) => nodes.concat(newNode));
@@ -119,6 +125,7 @@ export default function ReactFlowCanvas() {
   return (
     <div className="h-screen w-11/12">
       <ReactFlow
+        nodeTypes={nodeTypes}
         nodes={sessionState.tempState.nodes}
         edges={sessionState.tempState.edges}
         defaultEdgeOptions={{

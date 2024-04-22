@@ -2,27 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "reactflow/dist/style.css";
 
-.react-flow__node {
-    background-color: theme("colors.green.50");
-    border: 0.5px solid theme("borderColor.green.500");
-    box-shadow: theme("boxShadow.md");
-    color: theme("colors.green.700");
-    font-weight: theme("fontWeight.medium");
-    background-image: url("whatsapp.svg");
-    background-repeat: no-repeat;
-    background-position: 10%;
-}
+/* Can Override reactflow styles with tailwind styles by adding custom styles bottom to the import line */
 
-.react-flow__node.selectable.selected {
-    box-shadow: theme("boxShadow.md");
-    border: 1px solid theme("borderColor.green.600");
-}
 
-.react-flow__handle {
-    background-color: theme("borderColor.green.500");
-}
-
-.react-flow__node.selectable:focus {
-    box-shadow: theme("boxShadow.md");
-}

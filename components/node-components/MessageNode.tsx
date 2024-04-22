@@ -4,7 +4,7 @@ import { DragEventHandler } from "react";
 
 export default function MessageNode() {
   const onDragStart: DragEventHandler<HTMLDivElement> = (event) => {
-    event.dataTransfer.setData("application/reactflow", "default");
+    event.dataTransfer.setData("application/reactflow", "sendMessage");
   };
 
   return (
