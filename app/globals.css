@@ -1,9 +1,10 @@
+/* Can Override reactflow styles by importing reactflow styles at very top */
+@import "reactflow/dist/style.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "reactflow/dist/style.css";
 
-/* Can Override reactflow styles with tailwind styles by adding custom styles bottom to the import line */
 
 
