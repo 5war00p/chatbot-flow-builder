@@ -31,52 +31,68 @@ export default function ReactFlowCanvas() {
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
 
+  //  When user changes any node or edge in flow we update tempState in sessionState
   useEffect(() => {
-    if (nodes.length !== 0)
+    if (edges.length === 0 && nodes.length === 0) {
       setSessionState((prev) => ({
         ...prev,
         tempState: {
-          ...prev.tempState,
+          edges: [],
+          nodes: [],
+        },
+        isChanged: false,
+      }));
+    } else {
+      setSessionState((prev) => ({
+        ...prev,
+        tempState: {
+          edges,
           nodes,
         },
         isChanged: true,
       }));
-
-    if (edges.length !== 0)
-      setSessionState((prev) => ({
-        ...prev,
-        tempState: {
-          ...prev.tempState,
-          edges,
-        },
-        isChanged: true,
-      }));
-
-    if (edges.length === 0 && nodes.length === 0) {
-      setSessionState((prev) => ({
-        ...prev,
-        isChanged: false,
-      }));
     }
   }, [edges, nodes, setSessionState]);
 
+  /**
+   * When user clicks reset button we need to reset local state of edges and nodes to empty
+   * As resetSessionState calls at Actionbar - Reset button, we need to listen changes and reset here
+   */
+  useEffect(() => {
+    if (
+      sessionState.tempState.edges.length === 0 &&
+      sessionState.tempState.nodes.length === 0
+    ) {
+      setEdges([]);
+      setNodes([]);
+    }
+  }, [
+    sessionState.tempState.edges.length,
+    sessionState.tempState.nodes.length,
+    setEdges,
+    setNodes,
+  ]);
+
+  // When edges are drawn between nodes set connections
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
 
+  // Trigger when user drags nodes from components panel
   const onDragOver: DragEventHandler<HTMLDivElement> = useCallback((event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
 
+  // Trigger when user drops nodes into reactflow canvas
   const onDrop: DragEventHandler<HTMLDivElement> = useCallback(
     (event) => {
       event.preventDefault();
 
       const type = event.dataTransfer.getData("application/reactflow");
 
-      // check if the dropped element is valid
+      // check if reactFlowInstance is initialized and the dropped element is valid
       if (!reactFlowInstance || typeof type === "undefined" || !type) {
         return;
       }
@@ -119,13 +135,9 @@ export default function ReactFlowCanvas() {
         onDrop={onDrop}
         onDragOver={onDragOver}
         fitView
+        // Hiding React flow attribution to make it looks like official pro version
+        proOptions={{ hideAttribution: true }}
       >
-        {/* Hiding React flow attribution to make it looks like official pro version */}
-        <style>
-          {`.react-flow__attribution {
-                visibility: hidden;
-            }`}
-        </style>
         <Background />
         <Controls position="bottom-right" />
         <MiniMap position="top-right" />
